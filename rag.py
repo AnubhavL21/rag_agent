@@ -26,15 +26,18 @@ st.subheader('Your Intelligent Document Assistant')
 
 # st.write('DONE')
 
-uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+uploaded_file = st.file_uploader("Upload a PDF file",accept_multiple_files=True, type=["pdf"])
 
 
 # if uploaded_file:
 #     st.write("File uploaded successfully!")
 
 if uploaded_file:
-    pdf= PdfReader(uploaded_file)
-    raw_text = ""
+    raw_text = " "
+    for file in uploaded_file:
+        # st.write(f"Processing file: {file.name}")
+        pdf= PdfReader(file)
+    
     
     for page in pdf.pages:
         raw_text += page.extract_text()
@@ -55,8 +58,7 @@ if uploaded_file:
         query=st.text_input('Enter your query here👇')
         
         if query:
-            with st.chat_message("user"):
-                
+            with st.chat_message("assistant"):
                 with st.spinner('Analayzing the Document'):
                     relvent_doc=retrive.get_relevant_documents(query)
                     
@@ -75,3 +77,26 @@ if uploaded_file:
                     st.write(response.text)
     else:
         st.warning("Drop the file in PDF format.")
+        
+        
+# --- CONTACT INFORMATION ---
+# st.write("---")
+st.subheader("Contact Me")
+
+# Replace with your actual LinkedIn URL and email address
+linkedin_url = "https://www.linkedin.com/in/anubhav-v/"
+email_address = "anubhavnaidu@gmail.com"
+
+# HTML for the links
+linkedin_link = f'<a href="{linkedin_url}" target="_blank">LinkedIn Profile</a>'
+email_link = f'<a href="mailto:{email_address}">Send an Email</a>'
+
+# Using columns to display them side-by-side
+col1, col2  = st.columns(2)
+
+with col1:
+    st.markdown(f'[in] : {linkedin_link}', unsafe_allow_html=True)
+
+with col2:
+    st.markdown(f'✉️ : {email_link}', unsafe_allow_html=True)
+    
