@@ -5,7 +5,7 @@ load_dotenv()
 from PyPDF2 import PdfReader
 import google.generativeai as genai
 from langchain_huggingface import HuggingFaceEmbeddings # to get embedding model
-from langchain.schema import Document # it store the text and its metadata
+from langchain_core.documents import Document # it store the text and its metadata
 from langchain_text_splitters import CharacterTextSplitter # to split the raw text into smaller chunks
 from langchain_community.vectorstores import FAISS # to store the emdedded -text chunks in a vector database for similarity search.
 

@@ -7,4 +7,5 @@ langchain
 sentence-transformers
 faiss-cpu
 langchain_community
+langchain-core
 langchain-huggingface
