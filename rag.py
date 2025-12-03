@@ -60,7 +60,7 @@ if uploaded_file:
         if query:
             with st.chat_message("assistant"):
                 with st.spinner('Analayzing the Document'):
-                    relvent_doc=retrive.get_relevant_documents(query)
+                    relvent_doc = retrive.invoke(query)
                     
                     content = '\n\n'.join([i.page_content for i in relvent_doc])
                     
