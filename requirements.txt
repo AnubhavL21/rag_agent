@@ -6,6 +6,6 @@ PyPDF2
 langchain
 sentence-transformers
 faiss-cpu
-langchain_community
+langchain-community
 langchain-core
 langchain-huggingface
