@@ -6,7 +6,7 @@ from PyPDF2 import PdfReader
 import google.generativeai as genai
 from langchain_huggingface import HuggingFaceEmbeddings # to get embedding model
 from langchain_core.documents import Document # it store the text and its metadata
-from langchain_text_splitters import CharacterTextSplitter # to split the raw text into smaller chunks
+from langchain_text_splitters import RecursiveCharacterTextSplitter # to split the raw text into smaller chunks
 from langchain_community.vectorstores import FAISS # to store the emdedded -text chunks in a vector database for similarity search.
 
 key=os.getenv('GOOGLE_API_KEY')
@@ -53,7 +53,7 @@ if uploaded_file:
     
     if raw_text.strip():
         doc=Document(page_content=raw_text)
-        spiltter=CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        spiltter=RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         chunck_text=spiltter.split_documents([doc])
         
         text=[i.page_content for i in chunck_text]
