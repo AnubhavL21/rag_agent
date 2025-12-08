@@ -43,7 +43,7 @@ if uploaded_file:
     #     raw_text += page.extract_text()
     # st.write("PDF content extracted successfully!")
     
-    # raw_text = ""
+    raw_text = ""
     for file in uploaded_file:
         pdf = PdfReader(file)
     for page in pdf.pages:
