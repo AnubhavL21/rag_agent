@@ -12,7 +12,7 @@ from langchain_community.vectorstores import FAISS # to store the emdedded -text
 key=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=key)
 
-gemini_model=genai.GenerativeModel('gemini-1.5-flash')
+gemini_model=genai.GenerativeModel('gemini-2.5-flash')
 
 
 def load_embeddings_model():
@@ -66,7 +66,7 @@ if uploaded_file:
                     
                     prompt = f'''
                     You are a expert in asnwering questions based on the attention is all you need documnet.
-                    use the content and answer the query.If your unsure ypu should say "I don't know" and not make up an answer.                    
+                    use the content and answer the query.If your unsure you should say "I don't know" and not make up an answer.                    
                     content: {content}
                     query: {query}
                     result :
