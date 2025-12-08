@@ -33,22 +33,14 @@ uploaded_file = st.file_uploader("Upload a PDF file",accept_multiple_files=True,
 #     st.write("File uploaded successfully!")
 
 if uploaded_file:
-    raw_text = " "
+    raw_text = ""
     for file in uploaded_file:
-        # st.write(f"Processing file: {file.name}")
-        pdf= PdfReader(file)
-    
-    
-    for page in pdf.pages:
-        raw_text += page.extract_text()
-    # st.write("PDF content extracted successfully!")
-    
-    # raw_text = ""
-    # for file in uploaded_file:
-    #     pdf = PdfReader(file)
-    # for page in pdf.pages:
-    #     page_text = page.extract_text() or ""
-    #     raw_text += page_text + "\n"
+        pdf = PdfReader(file)
+        for page in pdf.pages:
+            page_text = page.extract_text()
+            # Handle cases where extract_text returns None
+            if page_text:
+                raw_text += page_text + "\n"
 
     
     if raw_text.strip():
@@ -56,9 +48,9 @@ if uploaded_file:
         spiltter=RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         chunck_text=spiltter.split_documents([doc])
         
-        text=[i.page_content for i in chunck_text]
+        # text=[i.page_content for i in chunck_text]
         
-        vector_db= FAISS.from_texts(text, embeddings_model)
+        vector_db= FAISS.from_documents(chunck_text, embeddings_model)
         retrive=vector_db.as_retriever()
         
         st.success("Document Processed Successfully...Ask your questions")
