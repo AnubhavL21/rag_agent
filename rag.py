@@ -12,7 +12,7 @@ from langchain_community.vectorstores import FAISS # to store the emdedded -text
 key=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=key)
 
-gemini_model=genai.GenerativeModel('gemini-1.5-flash')
+gemini_model=genai.GenerativeModel('gemini-2.0-flash')
 
 
 def load_embeddings_model():
@@ -40,7 +40,7 @@ if uploaded_file:
             page_text = page.extract_text()
             # Handle cases where extract_text returns None
             if page_text:
-                raw_text += page_text + "\n"
+                raw_text += page_text + "\n" 
 
     
     if raw_text.strip():
