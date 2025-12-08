@@ -33,15 +33,23 @@ uploaded_file = st.file_uploader("Upload a PDF file",accept_multiple_files=True,
 #     st.write("File uploaded successfully!")
 
 if uploaded_file:
-    raw_text = " "
-    for file in uploaded_file:
-        # st.write(f"Processing file: {file.name}")
-        pdf= PdfReader(file)
+    # raw_text = " "
+    # for file in uploaded_file:
+    #     # st.write(f"Processing file: {file.name}")
+    #     pdf= PdfReader(file)
     
     
-    for page in pdf.pages:
-        raw_text += page.extract_text()
+    # for page in pdf.pages:
+    #     raw_text += page.extract_text()
     # st.write("PDF content extracted successfully!")
+    
+    # raw_text = ""
+    for file in uploaded_file:
+        pdf = PdfReader(file)
+    for page in pdf.pages:
+        page_text = page.extract_text() or ""
+        raw_text += page_text + "\n"
+
     
     if raw_text.strip():
         doc=Document(page_content=raw_text)
