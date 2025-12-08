@@ -12,7 +12,7 @@ from langchain_community.vectorstores import FAISS # to store the emdedded -text
 key=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=key)
 
-gemini_model=genai.GenerativeModel('gemini-2.0-flash')
+gemini_model=genai.GenerativeModel('gemini-1.5-flash')
 
 
 def load_embeddings_model():
